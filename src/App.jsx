@@ -23,7 +23,18 @@ function App() {
     );
   };
 
-  return <></>;
+  const goToIndex = (index) => {
+    setCurrentIndex(index);
+  };
+
+  return (
+    <div className="carousel">
+      <div className="carousel-container">
+        <button onClick={goToPreview}>&lt;</button>
+        <button onClick={goTOBack}>&gt;</button>
+      </div>
+    </div>
+  );
 }
 
 export default App;
