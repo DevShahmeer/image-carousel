@@ -12,19 +12,19 @@ function App() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [loading, SetLoading] = useState(true);
 
-  const goTOBack = () => {
+  const goToSlide = () => {
     setCurrentIndex((preIndex) =>
       preIndex === images.length - 1 ? 0 : preIndex + 1
     );
   };
 
-  const goToPreview = () => {
+  const goToPrevious = () => {
     setCurrentIndex((preIndex) =>
       preIndex === 0 ? images.length - 1 : preIndex - 1
     );
   };
 
-  const goToIndex = (index) => {
+  const goToNext = (index) => {
     setCurrentIndex(index);
   };
 
@@ -47,10 +47,10 @@ function App() {
             ))}
           </>
         )}
-        <button onClick={goToPreview} className="carousel-button prev">
+        <button onClick={goToPrevious} className="carousel-button prev">
           &lt;
         </button>
-        <button onClick={goTOBack} className="carousel-button next">
+        <button onClick={goToNext} className="carousel-button next">
           &gt;
         </button>
       </div>
@@ -59,7 +59,7 @@ function App() {
           <button
             key={index}
             className={`dot ${currentIndex === index ? "active" : ""}`}
-            onClick={() => goToIndex(index)}
+            onClick={() => goToNext(index)}
           />
         ))}
       </div>
