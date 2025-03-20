@@ -47,8 +47,21 @@ function App() {
             ))}
           </>
         )}
-        <button onClick={goToPreview}>&lt;</button>
-        <button onClick={goTOBack}>&gt;</button>
+        <button onClick={goToPreview} className="carousel-button prev">
+          &lt;
+        </button>
+        <button onClick={goTOBack} className="carousel-button next">
+          &gt;
+        </button>
+      </div>
+      <div className="carousel-dots">
+        {images.map((_, index) => (
+          <button
+            key={index}
+            className={`dot ${currentIndex === index ? "active" : ""}`}
+            onClick={() => goToIndex(index)}
+          />
+        ))}
       </div>
     </div>
   );
