@@ -9,7 +9,7 @@ function App() {
     "https://images.unsplash.com/photo-1557008075-7f2c5efa4cfd?auto=format&fit=crop&w=800&h=400",
   ];
 
-  const [currentIndex, setCurrentIndex] = useState();
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   const goTOBack = () => {
     setCurrentIndex((preIndex) =>
@@ -30,6 +30,18 @@ function App() {
   return (
     <div className="carousel">
       <div className="carousel-container">
+        <>
+          {images.map((src, index) => (
+            <img
+              key={index}
+              src={src}
+              alt={`Slide ${index + 1}`}
+              className={`carousel-image ${
+                index === currentIndex ? "active" : ""
+              }`}
+            />
+          ))}
+        </>
         <button onClick={goToPreview}>&lt;</button>
         <button onClick={goTOBack}>&gt;</button>
       </div>
