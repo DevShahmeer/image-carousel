@@ -10,6 +10,7 @@ function App() {
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [loading, SetLoading] = useState(true);
 
   const goTOBack = () => {
     setCurrentIndex((preIndex) =>
@@ -30,18 +31,22 @@ function App() {
   return (
     <div className="carousel">
       <div className="carousel-container">
-        <>
-          {images.map((src, index) => (
-            <img
-              key={index}
-              src={src}
-              alt={`Slide ${index + 1}`}
-              className={`carousel-image ${
-                index === currentIndex ? "active" : ""
-              }`}
-            />
-          ))}
-        </>
+        {loading ? (
+          <div className="loading-placeholder">Loading amazing images...</div>
+        ) : (
+          <>
+            {images.map((src, index) => (
+              <img
+                key={index}
+                src={src}
+                alt={`Slide ${index + 1}`}
+                className={`carousel-image ${
+                  index === currentIndex ? "active" : ""
+                }`}
+              />
+            ))}
+          </>
+        )}
         <button onClick={goToPreview}>&lt;</button>
         <button onClick={goTOBack}>&gt;</button>
       </div>
