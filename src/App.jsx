@@ -12,7 +12,7 @@ function App() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [loading, SetLoading] = useState(true);
 
-  const goToSlide = () => {
+  const goToNext = () => {
     setCurrentIndex((preIndex) =>
       preIndex === images.length - 1 ? 0 : preIndex + 1
     );
@@ -24,7 +24,7 @@ function App() {
     );
   };
 
-  const goToNext = (index) => {
+  const goToSlide = (index) => {
     setCurrentIndex(index);
   };
 
@@ -59,7 +59,7 @@ function App() {
           <button
             key={index}
             className={`dot ${currentIndex === index ? "active" : ""}`}
-            onClick={() => goToNext(index)}
+            onClick={() => goToSlide(index)}
           />
         ))}
       </div>
