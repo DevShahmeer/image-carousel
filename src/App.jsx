@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 
 function App() {
@@ -10,17 +10,37 @@ function App() {
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [loading, SetLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Load all images
+    const preloadImages = () => {
+      const imagePromises = images.map((src) => {
+        return new Promise((resolve, reject) => {
+          const img = new Image();
+          img.src = src;
+          img.onload = resolve;
+          img.onerror = reject;
+        });
+      });
+
+      Promise.all(imagePromises)
+        .then(() => setLoading(false))
+        .catch((err) => console.error("Error preloading images:", err));
+    };
+
+    preloadImages();
+  }, []);
 
   const goToNext = () => {
-    setCurrentIndex((preIndex) =>
-      preIndex === images.length - 1 ? 0 : preIndex + 1
+    setCurrentIndex((prevIndex) =>
+      prevIndex === images.length - 1 ? 0 : prevIndex + 1
     );
   };
 
   const goToPrevious = () => {
-    setCurrentIndex((preIndex) =>
-      preIndex === 0 ? images.length - 1 : preIndex - 1
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? images.length - 1 : prevIndex - 1
     );
   };
 
@@ -28,6 +48,7 @@ function App() {
     setCurrentIndex(index);
   };
 
+  // Auto-advance slides every 5 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       goToNext();
