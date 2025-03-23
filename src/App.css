@@ -1,42 +1,178 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
+.carousel {
+  max-width: 800px;
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  background-color: white;
+  position: relative;
+}
+
+.carousel-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.carousel-image {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  display: block;
+  transition: opacity 0.5s ease;
+}
+
+.carousel-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(255, 255, 255, 0.7);
+  color: var(--text-color);
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: var(--transition);
+  z-index: 10;
+}
+
+.carousel-button:hover {
+  opacity: 1;
+  background-color: white;
+  box-shadow: var(--shadow);
+}
+
+.carousel-button.prev {
+  left: 15px;
+}
+
+.carousel-button.next {
+  right: 15px;
+}
+
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  padding: 15px 0;
+  background-color: white;
+  gap: 8px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: none;
+  background-color: var(--medium-gray);
+  cursor: pointer;
+  transition: var(--transition);
+  padding: 0;
+}
+
+.dot:hover {
+  background-color: var(--dark-gray);
+}
+
+.dot.active {
+  background-color: var(--primary-color);
+  transform: scale(1.2);
+}
+
+.loading-placeholder {
+  width: 100%;
+  height: 400px;
+  background: linear-gradient(110deg, #f5f5f5 8%, #e0e0e0 18%, #f5f5f5 33%);
+  background-size: 200% 100%;
+  animation: shine 1.5s linear infinite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  color: var(--dark-gray);
+  border-radius: 8px 8px 0 0;
+}
+
+@keyframes shine {
   to {
-    transform: rotate(360deg);
+    background-position-x: -200%;
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .carousel-image {
+    height: 300px;
+  }
+
+  .loading-placeholder {
+    height: 300px;
+  }
+
+  .carousel-button {
+    width: 35px;
+    height: 35px;
+    font-size: 16px;
   }
 }
 
-.card {
-  padding: 2em;
+@media (max-width: 480px) {
+  .carousel-image {
+    height: 200px;
+  }
+
+  .loading-placeholder {
+    height: 200px;
+  }
+
+  .carousel-button {
+    width: 30px;
+    height: 30px;
+    font-size: 14px;
+  }
+
+  .dot {
+    width: 8px;
+    height: 8px;
+  }
 }
 
-.read-the-docs {
-  color: #888;
+/* Smooth image transition effect */
+.carousel-container {
+  position: relative;
+}
+
+.carousel-image {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.carousel-image.active {
+  opacity: 1;
+  position: relative;
 }
