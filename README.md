@@ -11,13 +11,11 @@ A responsive, feature-rich image carousel component built with React and Vite. T
 - **Loading State**: Displays a loading message while images are being prepared
 - **Responsive Design**: Works across different screen sizes
 
-## 🚀 Demo
-
-[View Live Demo](#) *(Add your demo link when available)*
 
 ## 📷 Screenshots
 
-*(Add screenshots of your carousel here)*
+![Screenshot 2025-03-25 234359](https://github.com/user-attachments/assets/df3b5b0c-9a77-44d8-8127-b3d53d89ea1c)
+
 
 ## 🛠️ Technologies Used
 
